@@ -1,0 +1,13 @@
+spring:
+
+  datasource:
+    username: user
+    password: secret
+    url: jdbc:postgresql://localhost:5432/postgres
+    driver-class-name: org.postgresql.Driver
+
+  application:
+    name: jolly-api
+
+  main:
+    banner-mode: off
