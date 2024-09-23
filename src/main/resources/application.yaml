@@ -1,4 +1,9 @@
 spring:
+  application:
+    name: jolly-api
+
+  main:
+    banner-mode: off
 
   datasource:
     username: user
@@ -6,8 +11,16 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     driver-class-name: org.postgresql.Driver
 
-  application:
-    name: jolly-api
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        transaction:
+          coordinator_class: jdbc
+    open-in-view: false
 
-  main:
-    banner-mode: off
+security:
+  jwt:
+    secret-key: secret2
