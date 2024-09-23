@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class AuthExceptionHandler {
 
-  @ExceptionHandler(UserAlreadyExistsException.class)
+  @ExceptionHandler({
+      UserDoesNotExistException.class,
+      UserAlreadyExistsException.class,
+      WrongPasswordException.class
+  })
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   public String handleUserAlreadyExistsException(UserAlreadyExistsException e) {
     return ErrorResponse.toJson(e, HttpStatus.BAD_REQUEST);
