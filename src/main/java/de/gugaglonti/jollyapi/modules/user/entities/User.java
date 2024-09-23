@@ -54,6 +54,7 @@ public class User {
   private String username;
 
   @Column(nullable = false)
+  @JsonIgnore
   private String password;
 
   private String profilePicture;
@@ -66,12 +67,13 @@ public class User {
 
   // ====================================== //
 
-  @ElementCollection
+  @ElementCollection(fetch = FetchType.EAGER)
   @CollectionTable(
       name = "user_roles",
       joinColumns = @JoinColumn(name = "user_id")
   )
-  private Set<String> roles = Set.of("ROLE_USER");
+  @Enumerated(EnumType.STRING)
+  private Set<Role> roles = Set.of(Role.ROLE_USER);
 
   @Column(updatable = false)
   private LocalDateTime createdAt;
