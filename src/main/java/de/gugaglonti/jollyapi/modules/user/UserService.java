@@ -40,4 +40,12 @@ public class UserService {
             .build()
     );
   }
+
+  public User findById(Long userId) {
+    return userRepository.findById(userId).orElse(null);
+  }
+
+  public void save(User user) {
+    userRepository.save(user);
+  }
 }

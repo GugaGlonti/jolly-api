@@ -1,9 +1,13 @@
 package de.gugaglonti.jollyapi.modules.user.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.GenerationType;
@@ -79,4 +83,10 @@ public class User {
   private LocalDateTime createdAt;
 
   private LocalDateTime updatedAt;
+
+  public boolean checkPassword(
+      String password
+  ) {
+    return this.password.equals(password);
+  }
 }
