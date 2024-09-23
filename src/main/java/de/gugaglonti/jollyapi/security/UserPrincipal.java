@@ -3,11 +3,13 @@ package de.gugaglonti.jollyapi.security;
 import java.util.Collection;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Data
 @Builder
+@RequiredArgsConstructor
 public class UserPrincipal implements UserDetails {
 
   private final Long userId;

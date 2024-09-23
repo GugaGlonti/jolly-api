@@ -23,7 +23,6 @@ public class UserService {
     } else {
       return userRepository.findByUsername(identifier);
     }
-
   }
 
   public Boolean usernameExists(String email) {

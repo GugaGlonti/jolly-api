@@ -1,6 +1,5 @@
 package de.gugaglonti.jollyapi.common.errorhandling;
 
-
 import com.nimbusds.jose.shaded.gson.JsonObject;
 import org.springframework.http.HttpStatus;
 

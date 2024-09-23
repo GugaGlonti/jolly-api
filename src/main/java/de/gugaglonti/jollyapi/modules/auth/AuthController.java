@@ -3,7 +3,6 @@ package de.gugaglonti.jollyapi.modules.auth;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,14 +20,14 @@ public class AuthController {
 
   @PostMapping("/sign-up")
   public AuthToken signUp(
-      SignUpDto dto
+      @Valid SignUpDto dto
   ) {
     return this.authService.signUp(dto);
   }
 
   @PostMapping("/sign-in")
   public AuthToken signIn(
-      @Valid @RequestBody SignInDto dto
+      @Valid SignInDto dto
   ) {
     return this.authService.signIn(dto);
   }
