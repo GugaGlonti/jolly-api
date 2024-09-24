@@ -7,9 +7,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +28,7 @@ public class WebSecurityConfig {
     http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
     http
-        .cors(AbstractHttpConfigurer::disable)
+        .cors(WebSecurityConfig::enable)
         .csrf(AbstractHttpConfigurer::disable)
         .formLogin(AbstractHttpConfigurer::disable)
         .sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer
@@ -41,4 +44,13 @@ public class WebSecurityConfig {
     return http.build();
   }
 
+  private static void enable(CorsConfigurer<HttpSecurity> corsConfigurer) {
+    corsConfigurer.configurationSource(corsConfigurationSource -> {
+      CorsConfiguration corsConfiguration = new CorsConfiguration();
+      corsConfiguration.addAllowedOrigin("*");
+      corsConfiguration.addAllowedMethod("*");
+      corsConfiguration.addAllowedHeader("*");
+      return corsConfiguration;
+    });
+  }
 }
